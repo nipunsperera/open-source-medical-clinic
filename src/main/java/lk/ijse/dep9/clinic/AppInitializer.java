@@ -17,6 +17,14 @@ public class AppInitializer extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
+        URL resource = this.getClass().getResource("/view/LoginForm.fxml");
+        Parent container = FXMLLoader.load(resource);
+        Scene scene = new Scene(container);
+        primaryStage.setScene(scene);
+        primaryStage.setTitle("Login Form");
+        primaryStage.setResizable(false);
+        primaryStage.show();
+        primaryStage.centerOnScreen();
 
 
     }
