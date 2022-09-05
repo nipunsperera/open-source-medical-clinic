@@ -3,7 +3,16 @@ package lk.ijse.dep9.clinic.controller;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.stage.Stage;
+import lk.ijse.dep9.clinic.security.SercurityContextHolder;
+import lk.ijse.dep9.clinic.security.User;
+import lk.ijse.dep9.clinic.security.UserRole;
+
+import java.io.IOException;
+import java.sql.*;
 
 public class LoginFormController {
     public JFXTextField txtUsername;
@@ -15,7 +24,7 @@ public class LoginFormController {
 
     }
 
-    public void btnLoginOnAction(ActionEvent actionEvent) {
+    public void btnLoginOnAction(ActionEvent actionEvent) throws ClassNotFoundException {
         String username = txtUsername.getText();
         String password = txtPassword.getText();
 
@@ -34,7 +43,55 @@ public class LoginFormController {
             txtUsername.requestFocus();
             txtUsername.selectAll();
             return;
+        }
 
+
+        /*connecting with database MySQL*/
+
+
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        try {
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/medical_clinic", "root", "Nipun@96");
+            String sql = "SELECT roll FROM User WHERE username='%s' AND password ='%s'";
+            sql = String.format(sql, username, password);
+
+            Statement stm = connection.createStatement();
+            ResultSet rst = stm.executeQuery(sql);
+
+            if(rst.next()){
+                String role = rst.getString("roll");
+                SercurityContextHolder.setPrincipal(new User(username, UserRole.valueOf(role)));
+
+                Scene scene = null;
+
+                switch (role){
+                    case "Admin":
+                        scene = new Scene(FXMLLoader.load(this.getClass().getResource("/view/AdminDashboardForm.fxml")));
+                        break;
+                    case "Doctor":
+                        scene = new Scene(FXMLLoader.load(this.getClass().getResource("/view/DoctorDashboardForm.fxml")));
+                        break;
+                    default:
+                        scene = new Scene(FXMLLoader.load(this.getClass().getResource("/view/ReceptionistDashboardForm.fxml")));
+                }
+
+                Stage stage = new Stage();
+                stage.setTitle("Open Source Medical Clinic");
+                stage.setScene(scene);
+                stage.show();
+                stage.centerOnScreen();
+
+                btnLogin.getScene().getWindow().hide();
+
+            }else {
+                new Alert(Alert.AlertType.ERROR,"Invalid log in credential").showAndWait();
+                txtUsername.requestFocus();
+                txtUsername.selectAll();
+            }
+
+        } catch (SQLException | IOException e) {
+            e.printStackTrace();
+            new Alert(Alert.AlertType.ERROR,"Failed to connect with database").showAndWait();
         }
     }
 }
