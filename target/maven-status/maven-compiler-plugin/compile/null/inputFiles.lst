@@ -1,9 +1,11 @@
 /home/nipunperera/Documents/Java/02.09/medical-clinic/src/main/java/lk/ijse/dep9/clinic/AppInitializer.java
-/home/nipunperera/Documents/Java/02.09/medical-clinic/src/main/java/lk/ijse/dep9/clinic/controller/AdminDashboardFormController.java
 /home/nipunperera/Documents/Java/02.09/medical-clinic/src/main/java/lk/ijse/dep9/clinic/controller/LoginFormController.java
+/home/nipunperera/Documents/Java/02.09/medical-clinic/src/main/java/lk/ijse/dep9/clinic/controller/AdminDashboardFormController.java
 /home/nipunperera/Documents/Java/02.09/medical-clinic/src/main/java/lk/ijse/dep9/clinic/misc/CryptoUtil.java
 /home/nipunperera/Documents/Java/02.09/medical-clinic/src/main/java/lk/ijse/dep9/clinic/controller/ReceptionistDashboardFormController.java
+/home/nipunperera/Documents/Java/02.09/medical-clinic/src/main/java/lk/ijse/dep9/clinic/controller/AdminSettingFormController.java
 /home/nipunperera/Documents/Java/02.09/medical-clinic/src/main/java/lk/ijse/dep9/clinic/security/User.java
 /home/nipunperera/Documents/Java/02.09/medical-clinic/src/main/java/lk/ijse/dep9/clinic/security/UserRole.java
 /home/nipunperera/Documents/Java/02.09/medical-clinic/src/main/java/lk/ijse/dep9/clinic/security/SercurityContextHolder.java
+/home/nipunperera/Documents/Java/02.09/medical-clinic/src/main/java/lk/ijse/dep9/clinic/controller/ManageFieldFormController.java
 /home/nipunperera/Documents/Java/02.09/medical-clinic/src/main/java/lk/ijse/dep9/clinic/controller/DoctorDashboardFormController.java

@@ -4,6 +4,8 @@ lk/ijse/dep9/clinic/controller/DoctorDashboardFormController.class
 lk/ijse/dep9/clinic/controller/ReceptionistDashboardFormController.class
 lk/ijse/dep9/clinic/misc/CryptoUtil.class
 lk/ijse/dep9/clinic/security/User.class
+lk/ijse/dep9/clinic/controller/AdminSettingFormController.class
 lk/ijse/dep9/clinic/controller/AdminDashboardFormController.class
 lk/ijse/dep9/clinic/security/SercurityContextHolder.class
 lk/ijse/dep9/clinic/controller/LoginFormController.class
+lk/ijse/dep9/clinic/controller/ManageFieldFormController.class

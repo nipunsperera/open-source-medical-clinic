@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="601.0" prefWidth="946.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.dep9.clinic.controller.AdminSettingFormController">
+   <children>
+      <Label layoutX="383.0" layoutY="19.0" text="SETTINGS">
+         <font>
+            <Font name="Cantarell Extra Bold" size="37.0" />
+         </font>
+      </Label>
+      <VBox layoutX="46.0" layoutY="145.0" spacing="20.0" />
+      <JFXButton fx:id="btnBack" layoutX="39.0" layoutY="25.0" onAction="#btnBackOnAction" prefHeight="36.0" prefWidth="192.0" style="-fx-background-color: GREEN;" text="BACK" textFill="WHITE" />
+      <JFXButton fx:id="btnHospitalFee" layoutX="39.0" layoutY="172.0" onAction="#btnHospitalFeeOnAction" prefHeight="48.0" prefWidth="192.0" style="-fx-background-color: blue;" text="HOSPITAL FEE" textFill="WHITE" />
+      <JFXButton fx:id="btnDiscount" layoutX="39.0" layoutY="240.0" onAction="#btnDiscountOnAction" prefHeight="48.0" prefWidth="192.0" style="-fx-background-color: blue;" text="DISCOUNT" textFill="WHITE" />
+      <JFXButton fx:id="btnManageFields" layoutX="39.0" layoutY="308.0" onAction="#btnManageFieldsOnAction" prefHeight="48.0" prefWidth="192.0" style="-fx-background-color: blue;" text="MANAGE FIELDS" textFill="WHITE" />
+      <JFXButton fx:id="btnPassword" layoutX="39.0" layoutY="376.0" onAction="#btnPasswordOnAction" prefHeight="48.0" prefWidth="192.0" style="-fx-background-color: blue;" text="PASSWORD" textFill="WHITE" />
+      <JFXButton fx:id="btnAbout" layoutX="39.0" layoutY="444.0" onAction="#btnAboutOnAction" prefHeight="48.0" prefWidth="192.0" style="-fx-background-color: blue;" text="ABOUT" textFill="WHITE" />
+      <AnchorPane fx:id="apScene" layoutX="256.0" layoutY="90.0" prefHeight="501.0" prefWidth="674.0" />
+      <Line endX="808.0" layoutX="128.0" layoutY="81.0" startX="-100.0" />
+   </children>
+</AnchorPane>
