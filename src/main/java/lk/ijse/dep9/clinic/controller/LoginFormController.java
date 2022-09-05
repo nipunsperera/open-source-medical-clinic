@@ -7,6 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
+import lk.ijse.dep9.clinic.misc.CryptoUtil;
 import lk.ijse.dep9.clinic.security.SercurityContextHolder;
 import lk.ijse.dep9.clinic.security.User;
 import lk.ijse.dep9.clinic.security.UserRole;
@@ -59,14 +60,22 @@ public class LoginFormController {
             ResultSet rst = stm.executeQuery(sql);
 */
 
-            String sql = "SELECT roll FROM User WHERE username=? AND password =?";/*prepared statement | parameter indexes are 1 and 2 for parameters*/
+            /*String sql = "SELECT roll FROM User WHERE username=? AND password =?";*//*prepared statement | parameter indexes are 1 and 2 for parameters*/
+            String sql = "SELECT roll,password FROM User WHERE username=?";
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setString(1, username);
-            stm.setString(2, password);
             ResultSet rst = stm.executeQuery();
 
 
             if(rst.next()){
+                String ciperText = rst.getString("password"); /*Avoid seeing password from Database using HASHING*/
+                if(!CryptoUtil.getSha256Hex(password).equals(ciperText)){
+                    new Alert(Alert.AlertType.ERROR,"Invalid log in credential").showAndWait();
+                    txtUsername.requestFocus();
+                    txtUsername.selectAll();
+                    return;
+
+                }
                 String role = rst.getString("roll");
                 SercurityContextHolder.setPrincipal(new User(username, UserRole.valueOf(role))); /*Logged authenticated user store temporary within log in time*/
 
