@@ -51,16 +51,24 @@ public class LoginFormController {
 
         Class.forName("com.mysql.cj.jdbc.Driver");
         try {
-            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/medical_clinic", "root", "Nipun@96");
-            String sql = "SELECT roll FROM User WHERE username='%s' AND password ='%s'";
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/medical_clinic", "root", "Nipun@96"); /*here jdbc means protocol and jdbc:(databasename)*/
+            /*String sql = "SELECT roll FROM User WHERE username='%s' AND password ='%s'"; *//*Regular Statement*//*
             sql = String.format(sql, username, password);
 
             Statement stm = connection.createStatement();
             ResultSet rst = stm.executeQuery(sql);
+*/
+
+            String sql = "SELECT roll FROM User WHERE username=? AND password =?";/*prepared statement | parameter indexes are 1 and 2 for parameters*/
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setString(1, username);
+            stm.setString(2, password);
+            ResultSet rst = stm.executeQuery();
+
 
             if(rst.next()){
                 String role = rst.getString("roll");
-                SercurityContextHolder.setPrincipal(new User(username, UserRole.valueOf(role)));
+                SercurityContextHolder.setPrincipal(new User(username, UserRole.valueOf(role))); /*Logged authenticated user store temporary within log in time*/
 
                 Scene scene = null;
 
@@ -80,6 +88,7 @@ public class LoginFormController {
                 stage.setScene(scene);
                 stage.show();
                 stage.centerOnScreen();
+
 
                 btnLogin.getScene().getWindow().hide();
 
